@@ -12,6 +12,7 @@
         <module>activiti</module>
         <module>flowable</module>
         <module>camunda</module>
+        <module>flowable-ui</module>
     </modules>
 
     <dependencies>

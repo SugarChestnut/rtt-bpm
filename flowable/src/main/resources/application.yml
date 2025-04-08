@@ -4,5 +4,5 @@ spring:
     datasource:
         url: jdbc:mysql://47.98.104.98:3306/flowable?characterEncoding=UTF-8
         username: root
-        password: 03121994
+        password: jxZ03121994!
         driver-class-name: com.mysql.cj.jdbc.Driver
