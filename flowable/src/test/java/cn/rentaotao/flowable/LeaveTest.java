@@ -6,6 +6,7 @@ import org.flowable.engine.HistoryService;
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
+import org.flowable.engine.history.HistoricActivityInstance;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 import org.junit.jupiter.api.Test;
@@ -43,10 +44,12 @@ public class LeaveTest {
         variables.put("day", 5);
         variables.put("user", "小明");
         variables.put("submit", "提交");
-
+        // 启动流程实例
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("leave", variables);
+
+        // 第一个处理任务
         Task task = taskService.createTaskQuery().processInstanceId(instance.getId()).singleResult();
-        // 发起人完成当前任务
+
         taskService.complete(task.getId());
     }
 
@@ -93,6 +96,26 @@ public class LeaveTest {
             Map<String, Object> variables = new HashMap<>();
             variables.put("permission", "不通过");
             taskService.complete(task.getId(), variables);
+        }
+    }
+
+    @Test
+    public void queryHistory() {
+        // 当前正在进行的流程
+        List<ProcessInstance> leave = runtimeService.createProcessInstanceQuery().processDefinitionKey("leave").list();
+
+        // 一个流程ID
+        String id = leave.get(0).getId();
+
+        List<HistoricActivityInstance> list = historyService.createHistoricActivityInstanceQuery()
+                .processInstanceId(id)
+                .finished()
+                .orderByHistoricActivityInstanceEndTime()
+                .desc()
+                .list();
+        for (HistoricActivityInstance historicActivityInstance : list) {
+            System.out.println(historicActivityInstance.getActivityName());
+            System.out.println(historicActivityInstance.getDurationInMillis());
         }
     }
 }

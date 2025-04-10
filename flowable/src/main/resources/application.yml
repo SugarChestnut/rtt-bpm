@@ -6,3 +6,6 @@ spring:
         username: root
         password: jxZ03121994!
         driver-class-name: com.mysql.cj.jdbc.Driver
+flowable:
+    async-executor-activate: true
+    database-schema-update: true    # 自动升级表结构
