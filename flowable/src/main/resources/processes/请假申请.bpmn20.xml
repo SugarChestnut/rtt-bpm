@@ -2,7 +2,7 @@
     <process id="leave" name="请假申请" isExecutable="true">
         <startEvent id="startEvent1" name="开始" flowable:formFieldValidation="true">
             <extensionElements>
-                <flowable:executionListener event="start" expression="${execution.setVariable('leave', leaveEntityManager.newLeave(execution))}" />
+                <flowable:executionListener event="start" expression="${execution.setVariable('leave', leaveStartListener.newLeave(execution))}" />
             </extensionElements>
         </startEvent>
         <userTask id="sid-693A9F52-9283-4D8B-944F-2542A257D2D1" name="请假申请" flowable:assignee="${user}" flowable:formFieldValidation="true">

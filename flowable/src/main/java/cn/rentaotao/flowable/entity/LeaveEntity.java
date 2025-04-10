@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -15,7 +16,7 @@ import java.time.LocalDate;
  */
 @Data
 @TableName("leave_t")
-public class LeaveEntity {
+public class LeaveEntity implements Serializable {
 
     @TableId("id")
     private Integer id;

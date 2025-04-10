@@ -42,15 +42,15 @@ public class LeaveTest {
     public void startLeave() {
         Map<String, Object> variables = new HashMap<>();
         variables.put("day", 5);
-        variables.put("user", "小明");
+        variables.put("user", "小王");
         variables.put("submit", "提交");
         // 启动流程实例
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("leave", variables);
 
-        // 第一个处理任务
-        Task task = taskService.createTaskQuery().processInstanceId(instance.getId()).singleResult();
+        // 第一个处理任务，相当于提交申请
+//        Task task = taskService.createTaskQuery().processInstanceId(instance.getId()).singleResult();
 
-        taskService.complete(task.getId());
+//        taskService.complete(task.getId());
     }
 
     @Test
@@ -116,6 +116,15 @@ public class LeaveTest {
         for (HistoricActivityInstance historicActivityInstance : list) {
             System.out.println(historicActivityInstance.getActivityName());
             System.out.println(historicActivityInstance.getDurationInMillis());
+        }
+    }
+
+    @Test
+    public void queryUserTask() throws JsonProcessingException {
+        List<Task> tasks = taskService.createTaskQuery().taskAssignee("小王").list();
+        for (Task task : tasks) {
+            Map<String, Object> variables = taskService.getVariables(task.getId());
+            System.out.println(mapper.writeValueAsString(variables));
         }
     }
 }
