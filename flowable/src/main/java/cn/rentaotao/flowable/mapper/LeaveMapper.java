@@ -1,4 +1,4 @@
-package cn.rentaotao.flowable.mappper;
+package cn.rentaotao.flowable.mapper;
 
 import cn.rentaotao.flowable.entity.LeaveEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

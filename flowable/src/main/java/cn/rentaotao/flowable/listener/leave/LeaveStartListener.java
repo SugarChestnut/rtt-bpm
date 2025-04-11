@@ -1,7 +1,7 @@
 package cn.rentaotao.flowable.listener.leave;
 
 import cn.rentaotao.flowable.entity.LeaveEntity;
-import cn.rentaotao.flowable.mappper.LeaveMapper;
+import cn.rentaotao.flowable.mapper.LeaveMapper;
 import lombok.AllArgsConstructor;
 import org.flowable.engine.delegate.DelegateExecution;
 import org.springframework.stereotype.Service;

@@ -9,6 +9,7 @@ spring:
 flowable:
     async-executor-activate: true
     database-schema-update: true    # 自动升级表结构
+    check-process-definitions: true # 启动的时候是否检查流程文件，自动部署
 logging:
     level:
         org:

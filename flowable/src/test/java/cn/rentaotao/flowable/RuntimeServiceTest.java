@@ -23,7 +23,11 @@ public class RuntimeServiceTest {
      */
     @Test
     public void testCreateProcessInstance() {
+        // 根据流程配置的key创建实例
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("process", new HashMap<>());
+
+        // 根据流程ID创建实例
+        runtimeService.startProcessInstanceById("", new HashMap<>());
     }
     /**
      * 删除流程实例
